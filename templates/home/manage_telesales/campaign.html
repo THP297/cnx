@@ -99,8 +99,6 @@
 {% block js %}
 <script>
     document.body.addEventListener('htmx:xhr:loadend', function (event) {
-      console.log("Adwadawd");
-    // const leftActiveTab = {{ left_active_tab }};
     if (event.target?.getAttribute('hx-target') === '#left-tab-content') {
       document.querySelectorAll("#leftTab .tab").forEach((tab) => tab.classList.remove("active_tab"));
       event.target.classList.add("active_tab");
