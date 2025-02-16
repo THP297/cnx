@@ -1,4 +1,4 @@
-<nav class="navbar navbar-vertical navbar-expand-lg">
+<nav class="navbar navbar-vertical navbar-expand-lg" x-data="{ activeTab: 'home' }">
   <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
     <!-- scrollbar removed-->
     <div class="navbar-vertical-content">
@@ -12,6 +12,8 @@
               role="button"
               data-bs-toggle=""
               aria-expanded="false"
+              :class="{ 'active': activeTab === 'home' }"
+              @click="activeTab = 'home'"
             >
               <div class="d-flex align-items-center">
                 <span class="nav-link-icon">
@@ -30,6 +32,8 @@
               role="button"
               data-bs-toggle=""
               aria-expanded="false"
+              :class="{ 'active': activeTab === 'dashboard-autocall' }"
+              @click="activeTab = 'dashboard-autocall'"
             >
               <div class="d-flex align-items-center">
                 <span class="nav-link-icon">
@@ -48,6 +52,8 @@
               role="button"
               data-bs-toggle=""
               aria-expanded="false"
+              :class="{ 'active': activeTab === 'telesales-v2' }"
+              @click="activeTab = 'telesales-v2'"
             >
               <div class="d-flex align-items-center">
                 <span class="nav-link-icon">
@@ -66,6 +72,8 @@
               role="button"
               data-bs-toggle=""
               aria-expanded="false"
+              :class="{ 'active': activeTab === 'activities' }"
+              @click="activeTab = 'activities'"
             >
               <div class="d-flex align-items-center">
                 <span class="nav-link-icon">
@@ -106,7 +114,12 @@
               id="nv-manage-telesales"
             >
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a 
+                  class="nav-link"
+                  href="#"
+                  :class="{ 'active': activeTab === 'call-source' }"
+                  @click="activeTab = 'call-source'"
+                >
                   <div class="d-flex align-items-center">
                     <span class="nav-link-icon">
                       <span class="fa-solid fa-box-archive"> </span>
@@ -116,7 +129,16 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'home:manage-telesales-campaign' %}">
+                <a 
+                  class="nav-link "
+                  hx-get="{% url 'home:manage-telesales-campaign' %}"
+                  hx-target="#nav-content"
+                  hx-swap="innerHTML"
+                  hx-trigger="click"
+                  :class="{ 'active': activeTab === 'compaign' }"
+                  @click="activeTab = 'compaign'"
+                  id="customer-info"
+                >
                   <div class="d-flex align-items-center">
                     <span class="nav-link-icon">
                       <span class="fa-solid fa-flag"> </span>
@@ -126,7 +148,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a 
+                  class="nav-link"
+                  href="#"
+                  :class="{ 'active': activeTab === 'blacklist' }"
+                  @click="activeTab = 'blacklist'"
+                >
                   <div class="d-flex align-items-center">
                     <span class="nav-link-icon">
                       <span class="fa-solid fa-triangle-exclamation"> </span>
@@ -136,7 +163,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a
+                  class="nav-link"
+                  href="#"
+                  :class="{ 'active': activeTab === 'autodialer-setup' }"
+                  @click="activeTab = 'autodialer-setup'"
+                >
                   <div class="d-flex align-items-center">
                     <span class="nav-link-icon">
                       <span class="fa-solid fa-gears"> </span>
@@ -146,7 +178,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a
+                  class="nav-link"
+                  href="#"
+                  :class="{ 'active': activeTab === 'process-setup' }"
+                  @click="activeTab = 'process-setup'"
+                >
                   <div class="d-flex align-items-center">
                     <span class="nav-link-icon">
                       <span class="fa-solid fa-gears"> </span>
@@ -156,7 +193,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a
+                  class="nav-link"
+                  href="#"
+                  :class="{ 'active': activeTab === 'report-1' }"
+                  @click="activeTab = 'report-1'"
+                >
                   <div class="d-flex align-items-center">
                     <span class="nav-link-icon">
                       <span class="fa-solid fa-file"> </span>
@@ -166,7 +208,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a
+                  class="nav-link"
+                  href="#"
+                  :class="{ 'active': activeTab === 'report-2' }"
+                  @click="activeTab = 'report-2'"
+                >
                   <div class="d-flex align-items-center">
                     <span class="nav-link-icon">
                       <span class="fa-solid fa-file"> </span>
@@ -176,7 +223,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a
+                  class="nav-link"
+                  href="#"
+                  :class="{ 'active': activeTab === 'report-2.1' }"
+                  @click="activeTab = 'report-2.1'"
+                >
                   <div class="d-flex align-items-center">
                     <span class="nav-link-icon">
                       <span class="fa-solid fa-file"> </span>
@@ -186,7 +238,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a
+                  class="nav-link"
+                  href="#"
+                  :class="{ 'active': activeTab === 'report-talk-time' }"
+                  @click="activeTab = 'report-talk-time'"
+                >
                   <div class="d-flex align-items-center">
                     <span class="nav-link-icon">
                       <span class="fa-solid fa-file"> </span>
@@ -196,7 +253,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a
+                  class="nav-link"
+                  href="#"
+                  :class="{ 'active': activeTab === 'report-status-user' }"
+                  @click="activeTab = 'report-status-user'"
+                >
                   <div class="d-flex align-items-center">
                     <span class="nav-link-icon">
                       <span class="fa-solid fa-file"> </span>
@@ -206,7 +268,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a
+                  class="nav-link"
+                  href="#"
+                  :class="{ 'active': activeTab === 'log-calls' }"
+                  @click="activeTab = 'log-calls'"
+                >
                   <div class="d-flex align-items-center">
                     <span class="nav-link-icon">
                       <span class="fa-solid fa-clock-rotate-left"> </span>
@@ -218,7 +285,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a
+                  class="nav-link"
+                  href="#"
+                  :class="{ 'active': activeTab === 'queue' }"
+                  @click="activeTab = 'queue'"
+                >
                   <div class="d-flex align-items-center">
                     <span class="nav-link-icon">
                       <span class="fa-solid fa-person-running"> </span>
@@ -258,7 +330,12 @@
               id="nv-call-history"
             >
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a 
+                  class="nav-link"
+                  href="#"
+                  :class="{ 'active': activeTab === 'placeholder1' }"
+                  @click="activeTab = 'placeholder1'"
+                >
                   <div class="d-flex align-items-center">
                     <span class="nav-link-icon">
                       <span class="fa-solid fa-box-archive"> </span>
@@ -298,7 +375,12 @@
               id="nv-setting"
             >
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a
+                  class="nav-link"
+                  href="#"
+                  :class="{ 'active': activeTab === 'placeholder2' }"
+                  @click="activeTab = 'placeholder2'"
+                >
                   <div class="d-flex align-items-center">
                     <span class="nav-link-icon">
                       <span class="fa-solid fa-box-archive"> </span>

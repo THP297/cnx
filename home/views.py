@@ -8,4 +8,7 @@ def index(request: HttpRequest) -> HttpResponse:
 
 
 def manage_telesales_campaign(request: HttpRequest) -> HttpResponse:
-    return render(request, "home/manage_telesales/campaign.html")
+    context = {
+        'active': 'manage_telesales_campaign'
+    }
+    return render(request, "home/manage_telesales/campaign.html", context)
