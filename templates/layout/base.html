@@ -59,6 +59,17 @@
     <link href="{% static 'phoenix/vendors/leaflet/leaflet.css' %}" rel="stylesheet">
     <link href="{% static 'phoenix/vendors/leaflet.markercluster/MarkerCluster.css' %}" rel="stylesheet">
     <link href="{% static 'phoenix/vendors/leaflet.markercluster/MarkerCluster.Default.css' %}" rel="stylesheet">
+    <style>
+      .primary_background_color {
+          background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
+      }
+      
+      .active_tab{
+        background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
+        font-weight: 700;
+      }
+      
+        </style>
   </head>
 
 
@@ -68,8 +79,8 @@
     <!--    Main Content-->
     <!-- ===============================================-->
     <main class="main" id="top">
-      {% include "home/layout/nav-bar.html" %}
-      {% include "home/layout/top-bar.html" %}
+      {% include "./nav-bar.html" %}
+      {% include "./top-bar.html" %}
       <div class="content">
         <div class="pb-5">
           <div class="row g-4" id="nav-content">
@@ -78,7 +89,7 @@
             {% endblock %}
           </div>
         </div>
-        {% include "home/layout/footer.html" %}
+        {% include "./footer.html" %}
       </div>
       <script>
         var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;

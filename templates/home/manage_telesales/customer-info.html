@@ -1,12 +1,12 @@
 {% extends '../../layout/base.html' %}
 
-{% block subcontent %}
+{% block title %}Customer{% endblock %}
 {%block content %}
 <h2>Conx</h2>
 <div class="d-flex flex-wrap">
   <div style="max-width: 50%;" class="p-2 m-2 border" id="leftTab">
         <div class="p-2 border primary_background_color d-flex item-center">
-        <span class="lh-sm fw-semibold fs-6">THÔNG TIN KHÁCH HÀNG</span>
+        <span class="lh-sm fw-semibold fs-5">THÔNG TIN KHÁCH HÀNG</span>
         </div>
         <div id="messages-container">
         </div>
@@ -18,7 +18,7 @@
             hx-target="#left-tab-content"
             hx-swap="innerHTML"
             hx-trigger="click"
-            id="customer-info"
+            id="customer-info-form"
         >
             Customer Info
         </li>
@@ -29,60 +29,57 @@
             hx-target="#left-tab-content"
             hx-swap="innerHTML"
             hx-trigger="click"
-            id="contact-info"
+            id="contact-info-form"
         >
             Contact Info
         </li>
         <li
             style="width: 250px; font-size: small"
             class="tab text-center align-middle p-2"
-            hx-get="{% url 'home:payment-info-form' %}"
+            hx-get="{% url 'home:contact-info-form' %}"
             hx-target="#left-tab-content"
             hx-swap="innerHTML"
             hx-trigger="click"
-            id="payment-info"
+            id="contact-info-form"
         >
             Payment Info
         </li>
         <li
             style="width: 250px; font-size: small"
             class="tab text-center align-middle p-2"
-            hx-get="{% url 'home:product-info-form' %}"
+            hx-get="{% url 'home:contact-info-form' %}"
             hx-target="#left-tab-content"
             hx-swap="innerHTML"
             hx-trigger="click"
-            id="product-info"
+            id="contact-info-form"
         >
             Product Info
         </li>
         <li
             style="width: 250px; font-size: small"
             class="tab text-center align-middle p-2"
-            hx-get="{% url 'home:address-info-form' %}"
+            hx-get="{% url 'home:contact-info-form' %}"
             hx-target="#left-tab-content"
             hx-swap="innerHTML"
             hx-trigger="click"
-            id="address-info"
+            id="contact-info-form"
         >
             Address Info
         </li>
         <li
             style="width: 250px; font-size: small"
             class="tab text-center align-middle p-2"
-            hx-get="{% url 'home:phone-info-form' %}"
+            hx-get="{% url 'home:contact-info-form' %}"
             hx-target="#left-tab-content"
             hx-swap="innerHTML"
             hx-trigger="click"
-            id="phone-info"
+            id="contact-info-form"
         >
             Phone Info
         </li>
         </ul>
-        
-        <div class="p-2" id="left-tab-content">
-
-        </div>
-        </div>
+        <div id="left-tab-content"></div>
+       
   </div>
   <div style="max-width: 50%;" x-data class="p-2 m-2 border" id="rightTab">
     <div class="p-2 border primary_background_color d-flex item-center">
@@ -96,7 +93,7 @@
 </div>
 </div>
 
-{% block js %}
+{% endblock %} {% block js %}
 <script>
     document.body.addEventListener('htmx:xhr:loadend', function (event) {
       console.log("Adwadawd");
@@ -127,6 +124,4 @@
     }
   });
 </script>
-{% endblock %}
-{% endblock %} 
 {% endblock %}
