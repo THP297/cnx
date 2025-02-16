@@ -1,4 +1,3 @@
-{% extends '../../layout/base.html' %}
 
 {% block subcontent %}
 {%block content %}
@@ -10,75 +9,11 @@
         </div>
         <div id="messages-container">
         </div>
-        <ul class="d-flex list-inline fs-6 p-2 pb-0 border-bottom text-center">
-        <li
-            style="width: 250px; font-size: small"
-            class="tab text-center align-middle p-2"
-            hx-get="{% url 'home:customer-info-form' %}"
-            hx-target="#left-tab-content"
-            hx-swap="innerHTML"
-            hx-trigger="click"
-            id="customer-info"
-        >
-            Customer Info
-        </li>
-        <li
-            style="width: 250px; font-size: small"
-            class="tab text-center align-middle p-2"
-            hx-get="{% url 'home:contact-info-form' %}"
-            hx-target="#left-tab-content"
-            hx-swap="innerHTML"
-            hx-trigger="click"
-            id="contact-info"
-        >
-            Contact Info
-        </li>
-        <li
-            style="width: 250px; font-size: small"
-            class="tab text-center align-middle p-2"
-            hx-get="{% url 'home:payment-info-form' %}"
-            hx-target="#left-tab-content"
-            hx-swap="innerHTML"
-            hx-trigger="click"
-            id="payment-info"
-        >
-            Payment Info
-        </li>
-        <li
-            style="width: 250px; font-size: small"
-            class="tab text-center align-middle p-2"
-            hx-get="{% url 'home:product-info-form' %}"
-            hx-target="#left-tab-content"
-            hx-swap="innerHTML"
-            hx-trigger="click"
-            id="product-info"
-        >
-            Product Info
-        </li>
-        <li
-            style="width: 250px; font-size: small"
-            class="tab text-center align-middle p-2"
-            hx-get="{% url 'home:address-info-form' %}"
-            hx-target="#left-tab-content"
-            hx-swap="innerHTML"
-            hx-trigger="click"
-            id="address-info"
-        >
-            Address Info
-        </li>
-        <li
-            style="width: 250px; font-size: small"
-            class="tab text-center align-middle p-2"
-            hx-get="{% url 'home:phone-info-form' %}"
-            hx-target="#left-tab-content"
-            hx-swap="innerHTML"
-            hx-trigger="click"
-            id="phone-info"
-        >
-            Phone Info
-        </li>
-        </ul>
-        
+            <ul class="d-flex list-inline fs-6 p-2 pb-0 border-bottom text-center">
+                {% for tab in tabs %}
+                    {% include "home/components/partials/tab-bar-item.html" %}
+                {% endfor %}
+            </ul> 
         <div class="p-2" id="left-tab-content">
 
         </div>
