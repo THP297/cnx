@@ -5,3 +5,7 @@ from django.http import HttpRequest, HttpResponse
 # Create your views here.
 def index(request: HttpRequest) -> HttpResponse:
     return render(request, "home/index.html")
+
+
+def manage_telesales_campaign(request: HttpRequest) -> HttpResponse:
+    return render(request, "home/manage_telesales/campaign.html")

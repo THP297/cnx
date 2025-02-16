@@ -1,8 +1,5 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en-US" dir="ltr" data-navigation-type="default" data-navbar-horizontal-shape="default">
-
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +8,7 @@
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
-    <title>{% block title %}{% endblock %}</title>
+    <title>Phoenix</title>
 
 
     <!-- ===============================================-->
@@ -59,63 +56,3 @@
     <link href="{% static 'phoenix/vendors/leaflet.markercluster/MarkerCluster.css' %}" rel="stylesheet">
     <link href="{% static 'phoenix/vendors/leaflet.markercluster/MarkerCluster.Default.css' %}" rel="stylesheet">
   </head>
-
-
-  <body>
-
-    <!-- ===============================================-->
-    <!--    Main Content-->
-    <!-- ===============================================-->
-    <main class="main" id="top">
-      {% include "home/layout/nav-bar.html" %}
-      {% include "home/layout/top-bar.html" %}
-      <div class="content">
-        <div class="pb-5">
-          <div class="row g-4">
-            {% block content %} {% endblock %}
-          </div>
-        </div>
-        {% include "home/layout/footer.html" %}
-      </div>
-      <script>
-        var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
-        var navbarTop = document.querySelector('.navbar-top');
-        if (navbarTopStyle === 'darker') {
-          navbarTop.setAttribute('data-navbar-appearance', 'darker');
-        }
-
-        var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
-        var navbarVertical = document.querySelector('.navbar-vertical');
-        if (navbarVertical && navbarVerticalStyle === 'darker') {
-          navbarVertical.setAttribute('data-navbar-appearance', 'darker');
-        }
-      </script>
-    </main>
-    <!-- ===============================================-->
-    <!--    End of Main Content-->
-    <!-- ===============================================-->
-
-
-
-    <!-- ===============================================-->
-    <!--    JavaScripts-->
-    <!-- ===============================================-->
-    <script src="{% static 'phoenix/vendors/popper/popper.min.js' %}"></script>
-    <script src="{% static 'phoenix/vendors/bootstrap/bootstrap.min.js' %}"></script>
-    <script src="{% static 'phoenix/vendors/anchorjs/anchor.min.js' %}"></script>
-    <script src="{% static 'phoenix/vendors/is/is.min.js' %}"></script>
-    <script src="{% static 'phoenix/vendors/fontawesome/all.min.js' %}"></script>
-    <script src="{% static 'phoenix/vendors/lodash/lodash.min.js' %}"></script>
-    <script src="{% static 'phoenix/vendors/list.js/list.min.js' %}"></script>
-    <script src="{% static 'phoenix/vendors/feather-icons/feather.min.js' %}"></script>
-    <script src="{% static 'phoenix/vendors/dayjs/dayjs.min.js' %}"></script>
-    <script src="{% static 'phoenix/vendors/leaflet/leaflet.js' %}"></script>
-    <script src="{% static 'phoenix/vendors/leaflet.markercluster/leaflet.markercluster.js' %}"></script>
-    <script src="{% static 'phoenix/vendors/leaflet.tilelayer.colorfilter/leaflet-tilelayer-colorfilter.min.js' %}"></script>
-    <script src="{% static 'phoenix/assets/js/phoenix.js' %}"></script>
-    <script src="{% static 'phoenix/vendors/echarts/echarts.min.js' %}"></script>
-    <script src="{% static 'phoenix/assets/js/ecommerce-dashboard.js' %}"></script>
-
-  </body>
-
-</html>
