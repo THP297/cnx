@@ -1,6 +1,6 @@
 
-{% block subcontent %}
-{%block content %}
+{% load static %}
+<script defer src="{% static 'alpinejs/min.js' %}"></script>
 <h2>Conx</h2>
 <div class="d-flex flex-wrap">
   <div style="max-width: 50%;" class="p-2 m-2 border" id="leftTab">
@@ -9,7 +9,7 @@
         </div>
         <div id="messages-container">
         </div>
-            <ul class="d-flex list-inline fs-6 p-2 pb-0 border-bottom text-center">
+            <ul class="d-flex list-inline fs-6 p-2 pb-0 border-bottom text-center" x-data="{ activeTab: '{{ tabs.0.id }}' }">
                 {% for tab in tabs %}
                     {% include "home/components/partials/tab-bar-item.html" %}
                 {% endfor %}
@@ -30,36 +30,3 @@
   </div>
 </div>
 </div>
-
-{% block js %}
-<script>
-    document.body.addEventListener('htmx:xhr:loadend', function (event) {
-    if (event.target?.getAttribute('hx-target') === '#left-tab-content') {
-      document.querySelectorAll("#leftTab .tab").forEach((tab) => tab.classList.remove("active_tab"));
-      event.target.classList.add("active_tab");
-    }
-    if (event.target?.getAttribute('hx-target') === '#right-tab-content') {
-      document.querySelectorAll("#rightTab .tab").forEach((tab) => tab.classList.remove("active_tab"));
-      event.target.classList.add("active_tab");
-    }
-  });
-
-  // Set default active tab
-  document.addEventListener("DOMContentLoaded", function () {
-    const firstLeftTab = document.querySelector("#leftTab .tab");
-    
-    if (firstLeftTab) {
-        firstLeftTab.classList.add("active_tab");
-        firstLeftTab.click();
-    }
-
-    const firstRightTab = document.querySelector("#rightTab .tab");
-    if (firstRightTab) {
-        firstRightTab.classList.add("active_tab");
-        firstRightTab.click();
-    }
-  });
-</script>
-{% endblock %}
-{% endblock %} 
-{% endblock %}

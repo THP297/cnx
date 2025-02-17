@@ -6,6 +6,8 @@
     hx-swap="innerHTML"
     hx-trigger="click"
     id="{{ tab.id }}"
+    :class="{'active_tab': activeTab === '{{ tab.id }}' }"
+    @click="activeTab = '{{ tab.id }}'"
 >
     {{ tab.label }}
 </li>
