@@ -1,11 +1,11 @@
 <div class="mb-5">
     <div class="form-floating">
-        <input 
-            class="form-control" 
-            id="floatingEventInput_{{ field.name }}" 
-            type="text" 
-            name="{{ field.name }}" 
-            value="{{ field.value|default:'' }}" 
+        <input
+            class="form-control"
+            id="floatingEventInput_{{ field.name }}"
+            type="text"
+            name="{{ field.name }}"
+            value="{{ field.value|default:'' }}"
             placeholder="{{ field.placeholder|default:'' }}"
             {% if field.required %}required{% endif %}
         />

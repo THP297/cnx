@@ -30,8 +30,12 @@ class CustomerInfoForm(forms.Form):
     contract_number = forms.CharField(label="Số hợp đồng", required=False)
     company_name = forms.CharField(label="Tên công ty", required=False)
     company_address = forms.CharField(label="Địa chỉ công ty", required=True)
-    company_district = forms.CharField(label="Địa chỉ công ty - Quận/Huyện", required=False)
-    company_province = forms.CharField(label="Địa chỉ công ty - Tỉnh/TP", required=False)
+    company_district = forms.CharField(
+        label="Địa chỉ công ty - Quận/Huyện", required=False
+    )
+    company_province = forms.CharField(
+        label="Địa chỉ công ty - Tỉnh/TP", required=False
+    )
 
     def save(self, commit=True):
         data = self.cleaned_data
