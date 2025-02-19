@@ -21,3 +21,8 @@ repos:
         language: fail
         files: '[^a-z0-9._/-]'
         exclude: (README.md)
+  - repo: https://github.com/rtts/djhtml
+    rev: 3.0.7
+    hooks:
+      - id: djhtml
+        entry: djhtml --tabwidth 4
