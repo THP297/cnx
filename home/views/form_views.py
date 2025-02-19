@@ -49,7 +49,7 @@ def customer_info_form(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         form = CustomerInfoForm(request.POST)
         if form.is_valid():
-            customer_info = form.save(commit=False)  # Create instance without saving
+            form.save(commit=False)  # Create instance without saving
             # Perform additional logic here if needed
     else:
         form = CustomerInfoForm()  # Initialize an empty form
