@@ -13,29 +13,45 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    # Step 1: Check if the server is reachable from GitHub Actions
+    # Step 1: Get GitHub Actions Runner Public IP
+    - name: Get GitHub Actions Runner IP
+      id: get_ip
+      run: echo "RUNNER_IP=$(curl -s ifconfig.me)" >> $GITHUB_ENV
+
+    # Step 2: Allow GitHub Actions IP on Server Firewall
+    - name: Allow GitHub Actions IP on Server
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+        "sudo ufw allow from $RUNNER_IP to any port 22" || echo "❌ Failed to update firewall rules"
+
+    # Step 3: Check if the server is reachable from GitHub Actions
     - name: Check if server is reachable
       run: |
         ping -c 4 ${{ secrets.SSH_HOST }} || echo "❌ Server is unreachable"
 
-    # Step 2: Check if port 22 is open
+    # Step 4: Check if port 22 is open
     - name: Check if SSH port is open
       run: |
         nc -zv ${{ secrets.SSH_HOST }} 22 || echo "❌ Port 22 is closed"
 
-    # Step 3: Debug SSH Connection
+    # Step 5: Debug SSH Connection with Retry Logic
     - name: Debug SSH Connection
       run: |
-        echo "Testing SSH connection..."
-        ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo ✅ SSH Connection Successful!" || echo "❌ SSH Failed"
+        for i in {1..3}; do
+          echo "Testing SSH connection (Attempt $i)..."
+          ssh -vvv -o StrictHostKeyChecking=no -o ConnectTimeout=10 \
+          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo ✅ SSH Connection Successful!" && break || sleep 5
+        done || echo "❌ SSH Failed"
 
-    # Step 4: Deploy to Server
+    # Step 6: Deploy to Server
     - name: Deploy to Server
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+        echo "🚀 Starting Deployment..."
         cd /home/devadmin/cnx  # Change this to your actual project path
-        git pull origin main
-        docker compose down  # Stop old containers if using Docker
-        docker compose up -d --build  # Restart with latest changes
+        git pull origin main || { echo "❌ Git pull failed"; exit 1; }
+        docker compose down || { echo "❌ Docker down failed"; exit 1; }
+        docker compose up -d --build || { echo "❌ Docker build failed"; exit 1; }
+        echo "✅ Deployment successful!"
         exit
         EOF
