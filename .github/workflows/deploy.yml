@@ -13,20 +13,10 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Set up SSH Key
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/my_private_key
-        chmod 600 ~/.ssh/my_private_key
-        eval "$(ssh-agent -s)"
-        ssh-add ~/.ssh/my_private_key
-        ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-
-
     - name: Debug SSH Connection
       run: |
         echo "Testing SSH connection..."
-        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo SSH Connection Successful!"
+        ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo SSH Connection Successful!"
 
     - name: Deploy to Server
       run: |
