@@ -80,4 +80,6 @@ pre-commit install
 4. Then, it will connect to the server and pull the new image from DockerHub.
 5. Finally, it will stop the service, clear the old image, and run the server with the new image.
 
-![flowchart](deployment_flow.png)Testing CD Deployment 🚀
+![flowchart](deployment_flow.png)
+Testing CD Deployment 🚀
+vietthem
