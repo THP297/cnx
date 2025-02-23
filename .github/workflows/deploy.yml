@@ -13,10 +13,23 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
+    # Step 1: Check if the server is reachable from GitHub Actions
+    - name: Check if server is reachable
+      run: |
+        ping -c 4 ${{ secrets.SSH_HOST }} || echo "❌ Server is unreachable"
+
+    # Step 2: Check if port 22 is open
+    - name: Check if SSH port is open
+      run: |
+        nc -zv ${{ secrets.SSH_HOST }} 22 || echo "❌ Port 22 is closed"
+
+    # Step 3: Debug SSH Connection
     - name: Debug SSH Connection
       run: |
-        ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo SSH Connection Successful!"
+        echo "Testing SSH connection..."
+        ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo ✅ SSH Connection Successful!" || echo "❌ SSH Failed"
 
+    # Step 4: Deploy to Server
     - name: Deploy to Server
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
