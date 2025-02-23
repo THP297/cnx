@@ -23,7 +23,7 @@ jobs:
     - name: Deploy to Server
       run: |
         ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-        cd /path/to/your/project  # Change this to your project path
+        cd /home/devadmin/cnx  # Change this to your project path
         git pull origin main
         docker compose down  # Stop old containers if using Docker
         docker compose up -d --build  # Restart with latest changes
