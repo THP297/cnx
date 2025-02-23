@@ -15,7 +15,6 @@ jobs:
 
     - name: Debug SSH Connection
       run: |
-        echo "Testing SSH connection..."
         ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo SSH Connection Successful!"
 
     - name: Deploy to Server
