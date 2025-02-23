@@ -33,14 +33,10 @@ jobs:
           exit 1
         fi
 
-    # Step 3: Debug SSH Connection with Retry Logic
     - name: Debug SSH Connection
       run: |
-        for i in {1..3}; do
-          echo "Testing SSH connection (Attempt $i)..."
-          ssh -vvv -o StrictHostKeyChecking=no -o ConnectTimeout=10 \
-          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo ✅ SSH Connection Successful!" && break || sleep 5
-        done || { echo "❌ SSH Failed"; exit 1; }
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo ✅ SSH Connection Successful!"
+
 
     # Step 4: Deploy to Server
     - name: Deploy to Server
